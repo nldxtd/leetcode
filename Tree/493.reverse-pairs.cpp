@@ -5,13 +5,13 @@
  */
 
 // @lc code=start
+
 class Solution {
 public:
-    void sort(vector<int>& nums, int lo, int hi);
-    
     int reversePairs(vector<int>& nums) {
         // 执行归并排序
-        sort(nums, 0, nums.size()-1);
+        temp.resize(nums.size(), 0);
+        mergeSort(nums, 0, nums.size()-1);
         return count;
     }
     
@@ -19,13 +19,13 @@ private:
     vector<int> temp;
 
     // 归并排序
-    void sort(vector<int>& nums, int lo, int hi) {
+    void mergeSort(vector<int>& nums, int lo, int hi) {
         if (lo == hi) {
             return;
         }
         int mid = lo + (hi - lo) / 2;
-        sort(nums, lo, mid);
-        sort(nums, mid + 1, hi);
+        mergeSort(nums, lo, mid);
+        mergeSort(nums, mid + 1, hi);
         merge(nums, lo, mid, hi);
     }
 
